@@ -10,10 +10,7 @@ In **Microsoft Word** it's easy to convert footnotes to endnotes or vice versa, 
 
 So if you are a LibreOffice user, you need to do it manually, either within the document, or by changing the odt file's `content.xml`. The latter is automated by this script.
 
-Before running the script on an OpenDocument Text file, you should close your file, if it's still open in LibreWriter. If your text file contains foot- and endnotes, they will all be converted, footnotes to endnotes, and endnotes to footnotes.
-
-**NOT RELEASED YET**
-**COMING SOON**
+Before running the script on an OpenDocument Text file, you should save the file, if you're currently working on it in LibreWriter. If your text file contains foot- and endnotes, they will all be converted, footnotes to endnotes, and endnotes to footnotes.
 
 ## Installation
 * [Download the latest DMG](https://github.com/JayBrown/LOconv/releases) and open
