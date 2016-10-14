@@ -3,16 +3,16 @@
 [![LOconv-depend-tnote](https://img.shields.io/badge/dependency-terminal--notifier%201.7.1-green.svg)](https://github.com/alloy/terminal-notifier)
 [![LOconv-license](http://img.shields.io/badge/license-MIT+-blue.svg)](https://github.com/JayBrown/LOconv/blob/master/license.md)
 
-# LibreOffice – LibreWriter: Convert Footnotes <> Endnotes <img src="https://github.com/JayBrown/LOconv/blob/master/img/jb-img.png" height="20px"/>
+# LibreOffice Writer: Convert Footnotes <> Endnotes <img src="https://github.com/JayBrown/LOconv/blob/master/img/jb-img.png" height="20px"/>
 **macOS workflow and shell script to convert footnotes to endnotes and vice versa in OpenDocument Text files (odt/fodt)**
 
-In **Microsoft Word** it's easy to convert footnotes to endnotes or vice versa, a functionality important to many scientific authors. Even though users have requested this feature to be implemented in **LibreWriter** (part of [**LibreOffice**](http://www.libreoffice.org))—for many years apparently—, the developers haven't done so yet.
+In **Microsoft Word** it's easy to convert footnotes to endnotes or vice versa, a functionality important to many scientific authors. Even though users have requested this feature to be implemented in [**LibreOffice Writer**](http://www.libreoffice.org) (for many years apparently), the developers haven't done so yet.
 
-So if you are a user of LibreOffice (Writer), you need to do it manually, either within the document itself, by changing an fodt file's xml content, or by changing an odt file's `content.xml`. The latter two are automated by this script.
+So if you are a user of LibreOffice Writer, you need to do it manually, either within the document itself, by changing an fodt file's xml content, or by changing an odt file's `content.xml`. The latter two are automated by this script.
 
-Before running the script on an OpenDocument Text file, you should save the file, if you're currently working on it in LibreWriter. If your text file contains foot- and endnotes, they will all be converted, footnotes to endnotes, and endnotes to footnotes. Your original text document will not be touched; instead a new file will be created with the suffix `-conv.odt` or `-conv.fodt`.
+Before running the script on an OpenDocument Text file, you should save the file, if you're currently working on it in LibreOffice Writer. If your text file contains foot- and endnotes, they will all be converted, footnotes to endnotes, and endnotes to footnotes. Your original text document will not be touched; instead a new file will be created with the suffix `-conv.odt` or `-conv.fodt`.
 
-**Note:** If you just want LibreWriter to *display* your footnotes at the end of your document without converting, you can do so by selecting the position "End of document" in the menu **Tools** > **Footnotes and Endnotes…**.
+**Note:** If you just want LibreOffice Writer to *display* your footnotes at the end of your document without converting, you can do so by selecting the position "End of document" in the menu **Tools** > **Footnotes and Endnotes…**.
 
 ## Installation
 * [Download the latest DMG](https://github.com/JayBrown/LOconv/releases) and open
