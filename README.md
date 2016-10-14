@@ -31,7 +31,7 @@ You need to have Spotlight enabled for `mdfind` to locate the terminal-notifier.
 Install using [Homebrew](http://brew.sh) with `brew install terminal-notifier` (or with a similar manager)
 
 #### Installation method #2
-* move the terminal-notifier zip archive from the DiMaGo disk image to a folder on your main volume
+* move the terminal-notifier zip archive from the disk image to a folder on your main volume
 * unzip the application and move it to a suitable location, e.g. to `/Applications`, `/Applications/Utilities`, or `$HOME/Applications`
 
 ### Shell script [optional]
