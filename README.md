@@ -12,6 +12,8 @@ So if you are a LibreOffice user, you need to do it manually, either within the 
 
 Before running the script on an OpenDocument Text file, you should save the file, if you're currently working on it in LibreWriter. If your text file contains foot- and endnotes, they will all be converted, footnotes to endnotes, and endnotes to footnotes.
 
+**Note:** If you just want LibreWriter to *display* your footnotes at the end of your document without converting, you can do so by selecting the position "End of document" in the menu **Tools** > **Footnotes and Endnotes…**.
+
 ## Installation
 * [Download the latest DMG](https://github.com/JayBrown/LOconv/releases) and open
 
