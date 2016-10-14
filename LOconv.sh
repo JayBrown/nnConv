@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# LibreOffice - LibreWriter: Convert Footnotes <> Endnotes v1.0.0 (LOconv)
+# LibreOffice - LibreWriter: Convert Footnotes <> Endnotes v1.1.0 (LOconv)
 # LibreWriter ➤ Convert Notes (shell script version)
 
 LANG=en_US.UTF-8
 export PATH=/usr/local/bin:$PATH
 ACCOUNT=$(/usr/bin/id -un)
-CURRENT_VERSION="1.00"
+CURRENT_VERSION="1.10"
 
 # check compatibility
 MACOS2NO=$(/usr/bin/sw_vers -productVersion | /usr/bin/awk -F. '{print $2}')
@@ -88,39 +88,67 @@ do
 FILENAME=$(/usr/bin/basename "$FILE")
 
 SUFFIX="${FILENAME##*.}"
-if [[ "$SUFFIX" != "odt" ]] && [[ "$SUFFIX" != "ODT" ]] ; then
-	echo "Wrong format! ODT files only..."
-	notify "Error! ODT files only…" "$FILENAME"
+if [[ "$SUFFIX" != "odt" ]] && [[ "$SUFFIX" != "ODT" ]] && [[ "$SUFFIX" != "fodt" ]] && [[ "$SUFFIX" != "FODT" ]]; then
+	echo "Wrong format! ODT/FODT files only..."
+	notify "Error! ODT/FODT files only…" "$FILENAME"
 	exit # ALT: continue
 fi
 
-CONTENT=$(/usr/bin/unzip -p "$FILE" content.xml)
-if [[ $(echo "$CONTENT" | /usr/bin/grep "text:note-class=\"endnote\"") == "" ]] && [[ $(echo "$CONTENT" | /usr/bin/grep "text:note-class=\"footnote\"") == "" ]] ; then
-	echo "Document doesn't contain any notes"
-	notify "Error" "Document doesn't contain notes"
-	exit # ALT: continue
+if [[ "$SUFFIX" == "odt" ]] || [[ "$SUFFIX" == "ODT" ]] ; then
+
+	echo "Looking for notes in $FILENAME..."
+
+	CONTENT=$(/usr/bin/unzip -p "$FILE" content.xml)
+	if [[ $(echo "$CONTENT" | /usr/bin/grep "text:note-class=\"endnote\"") == "" ]] && [[ $(echo "$CONTENT" | /usr/bin/grep "text:note-class=\"footnote\"") == "" ]] ; then
+		echo "Document doesn't contain any notes"
+		notify "Error" "Document doesn't contain notes"
+		exit # ALT: continue
+	fi
+
+	echo "Converting notes..."
+
+	FILENAME="${FILENAME%.*}"
+	NEW_FILENAME="$FILENAME-conv.$SUFFIX"
+	TARGET_DIR=$(/usr/bin/dirname "$FILE")
+
+	TEMP_DIR="$TARGET_DIR/temp"
+
+	mkdir -p "$TEMP_DIR"
+	cp "$FILE" "$TEMP_DIR/$NEW_FILENAME"
+
+	INTERIM=$(echo "$CONTENT" | /usr/bin/sed 's/text:note-class="footnote"/text:note-class="interimnote"/g')
+	NEW_CONTENT=$(echo "$INTERIM" | /usr/bin/sed 's/text:note-class="endnote"/text:note-class="footnote"/g' | /usr/bin/sed 's/text:note-class="interimnote"/text:note-class="endnote"/g')
+	echo "$NEW_CONTENT" > "$TEMP_DIR/content.xml"
+
+	cd "$TEMP_DIR"
+	/usr/bin/zip -u "$NEW_FILENAME"
+
+	cd /
+	mv "$TEMP_DIR/$NEW_FILENAME" "$TARGET_DIR/$NEW_FILENAME"
+	rm -rf "$TEMP_DIR"
+
+elif [[ "$SUFFIX" == "fodt" ]] || [[ "$SUFFIX" == "FODT" ]] ; then
+
+	echo "Looking for notes in $FILENAME..."
+
+	CONTENT=$(/bin/cat "$FILE")
+	if [[ $(echo "$CONTENT" | /usr/bin/grep "text:note-class=\"endnote\"") == "" ]] && [[ $(echo "$CONTENT" | /usr/bin/grep "text:note-class=\"footnote\"") == "" ]] ; then
+		echo "Document doesn't contain any notes"
+		notify "Error" "Document doesn't contain notes"
+		exit # ALT: continue
+	fi
+
+	echo "Converting notes..."
+
+	FILENAME="${FILENAME%.*}"
+	NEW_FILENAME="$FILENAME-conv.$SUFFIX"
+	TARGET_DIR=$(/usr/bin/dirname "$FILE")
+
+	INTERIM=$(echo "$CONTENT" | /usr/bin/sed 's/text:note-class="footnote"/text:note-class="interimnote"/g')
+	NEW_CONTENT=$(echo "$INTERIM" | /usr/bin/sed 's/text:note-class="endnote"/text:note-class="footnote"/g' | /usr/bin/sed 's/text:note-class="interimnote"/text:note-class="endnote"/g')
+	echo "$NEW_CONTENT" > "$TARGET_DIR/$NEW_FILENAME"
+
 fi
-
-echo "Converting notes in $FILENAME..."
-
-FILENAME="${FILENAME%.*}"
-NEW_FILENAME="$FILENAME-conv.$SUFFIX"
-TARGET_DIR=$(/usr/bin/dirname "$FILE")
-TEMP_DIR="$TARGET_DIR/temp"
-
-mkdir -p "$TEMP_DIR"
-cp "$FILE" "$TEMP_DIR/$NEW_FILENAME"
-
-INTERIM=$(echo "$CONTENT" | /usr/bin/sed 's/text:note-class="footnote"/text:note-class="interimnote"/g')
-NEW_CONTENT=$(echo "$INTERIM" | /usr/bin/sed 's/text:note-class="endnote"/text:note-class="footnote"/g' | /usr/bin/sed 's/text:note-class="interimnote"/text:note-class="endnote"/g')
-echo "$NEW_CONTENT" > "$TEMP_DIR/content.xml"
-
-cd "$TEMP_DIR"
-/usr/bin/zip -u "$NEW_FILENAME"
-
-cd /
-mv "$TEMP_DIR/$NEW_FILENAME" "$TARGET_DIR/$NEW_FILENAME"
-rm -rf "$TEMP_DIR"
 
 echo "Done: $NEW_FILENAME"
 notify "Done" "$NEW_FILENAME"
