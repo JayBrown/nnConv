@@ -16,18 +16,19 @@ To convert all notes at once you need to hack the text file, either by changing 
 
 ## Functionality
 * one-shot conversion of all notes in a document (odt/fodt formats)
-  * uses the `sed` command
-  * only changes the `text-class` xml values
-  * does not alter any style settings
+  * uses the `sed` command for the main operation
+  * only changes the `note-class` xml values
+  * does not alter any style settings, e.g. `note-style`
 * automatic footnote-to-endnote conversion, if document contains only footnotes
 * automatic endnote-to-footnote conversion, if document contains only endnotes
 * user prompt with three options, if document contains both footnotes and endnotes:
-  1. merge all notes as endnotes
-  2. merge all notes as footnotes
-  3. swap footnotes <> endnotes
+  1. swap footnotes <> endnotes
+  2. merge all notes as endnotes
+  3. merge all notes as footnotes
+
 * original text file will not be touched
 * creates new text file with suffix `-conv.odt` or `-conv.fodt`
-* **GitHub repository subfolder `*nix`** contains a shell script that *should* be compatible with Linux, BSD, other Unix systems etc. (only tested on macOS)
+* **GitHub repository subfolder `*nix`** contains a shell script that *should* be compatible with Linux, BSD, other Unix-like systems etc., including macOS
 
 ## Planned functionality
 * support for `docx` files (*Note*: **after some preliminary testing it's clear that it won't be easy to make the script work with Microsoft's *idiotic* file format**)
