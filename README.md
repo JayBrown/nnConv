@@ -4,7 +4,7 @@
 [![nnConv-license](http://img.shields.io/badge/license-MIT+-blue.svg)](https://github.com/JayBrown/nnConv/blob/master/license.md)
 
 # LibreOffice Writer: Convert All Notes <img src="https://github.com/JayBrown/nnConv/blob/master/img/jb-img.png" height="20px"/>
-**macOS workflow and shell script for one-shot conversion of all footnotes or endnotes in OpenDocument text files (odt/fodt) for use e.g. in LibreOffice Writer**
+**macOS workflow and shell scripts for one-shot conversion of all footnotes or endnotes in OpenDocument text files (odt/fodt) for use e.g. in LibreOffice Writer**
 
 ![nnConv-screengrab](https://github.com/JayBrown/nnConv/blob/master/img/nnConv-screengrab.png)
 
@@ -27,6 +27,7 @@ To convert all notes at once you need to hack the text file, either by changing 
   3. swap footnotes <> endnotes
 * original text file will not be touched
 * creates new text file with suffix `-conv.odt` or `-conv.fodt`
+* **GitHub repository subfolder `*nix`** contains a shell script that *should* be compatible with Linux, BSD, other Unix systems etc. (only tested on macOS)
 
 ## Planned functionality
 * support for `docx` files (not sure if possible)
