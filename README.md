@@ -30,7 +30,7 @@ To convert all notes at once you need to hack the text file, either by changing 
 * **GitHub repository subfolder `*nix`** contains a shell script that *should* be compatible with Linux, BSD, other Unix systems etc. (only tested on macOS)
 
 ## Planned functionality
-* support for `docx` files (Note: after some preliminary testing it will not be easy to make the script work with this ***idiotic* file format**)
+* support for `docx` files (*Note*: **after some preliminary testing it's clear that it won't be easy to make the script work with Microsoft's *idiotic* file format**)
 
 ## Installation
 * [Download the latest DMG](https://github.com/JayBrown/nnConv/releases) and open
