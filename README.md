@@ -6,6 +6,8 @@
 # LibreOffice Writer: Convert All Notes <img src="https://github.com/JayBrown/nnConv/blob/master/img/jb-img.png" height="20px"/>
 **macOS workflow and shell script for one-shot conversion of all footnotes or endnotes in OpenDocument text files (odt/fodt) for use e.g. in LibreOffice Writer**
 
+![nnConv-screengrab](https://github.com/JayBrown/nnConv/blob/master/img/nnConv-screengrab.png)
+
 In **Microsoft Word** it's easy to convert all footnotes to endnotes (or vice versa) in one shot, a functionality important to many scientific authors. Even though users have requested this feature to be implemented in [**LibreOffice Writer**](http://www.libreoffice.org) (for many years apparently), the developers haven't done so yet. So if you are a user of LibreOffice Writer, you need to do it manually: the only official option is to do it one note at a time within the document itself, which is time-consuming if you need to convert hundreds of notes.
 
 To convert all notes at once you need to hack the text file, either by changing an fodt file's xml content, or by changing an odt file's `content.xml`. The latter two are automated by this script. Before running the script on an OpenDocument Text file, you should save the file, if you're currently working on it in LibreOffice Writer.
