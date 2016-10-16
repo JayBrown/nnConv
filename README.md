@@ -14,15 +14,15 @@ To convert all notes at once you need to hack the text file, either by changing 
 
 ## Functionality
 * one-shot conversion of all notes in a document (odt/fodt formats)
-* * uses the `sed` command
-* * only changes the `text-class` xml values
-* * does not alter any style settings
+  * uses the `sed` command
+  * only changes the `text-class` xml values
+  * does not alter any style settings
 * automatic footnote-to-endnote conversion, if document contains only footnotes
 * automatic endnote-to-footnote conversion, if document contains only endnotes
 * user prompt with three options, if document contains both footnotes and endnotes:
-* * merge all notes as endnotes
-* * merge all notes as footnotes
-* * swap footnotes <> endnotes
+  1. merge all notes as endnotes
+  2. merge all notes as footnotes
+  3. swap footnotes <> endnotes
 * original text file will not be touched
 * creates new text file with suffix `-conv.odt` or `-conv.fodt`
 
